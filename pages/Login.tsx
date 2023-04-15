@@ -3,9 +3,9 @@ import {
     SafeAreaView, View, Text, StatusBar, StyleSheet, TextInput, TouchableOpacity,
     Image, Keyboard, TouchableWithoutFeedback
 } from 'react-native';
-import globalStyle from './global-style';
+import globalStyle from '../global-style';
 import CheckBox from '@react-native-community/checkbox'
-import { Colors } from './colors';
+import { Colors } from '../colors';
 import { RFValue } from "react-native-responsive-fontsize";
 
 const passwordInputRef = createRef();
@@ -60,7 +60,7 @@ export default class LoginPage extends React.Component {
                 ) : null}
 
                 <View style={styles.SectionStyle}>
-                    <Image source={require('./Images/email.png')} style={styles.ImageStyle} />
+                    <Image source={require('../Images/email.png')} style={styles.ImageStyle} />
                     <TextInput
                         style={globalStyle.full_screen}
                         underlineColorAndroid="transparent"
@@ -82,7 +82,7 @@ export default class LoginPage extends React.Component {
                 </View>
 
                 <View style={styles.SectionStyle}>
-                    <Image source={require('./Images/password.png')} style={styles.ImageStyle} />
+                    <Image source={require('../Images/password.png')} style={styles.ImageStyle} />
                     <TextInput
                         style={globalStyle.full_screen}
                         onChangeText={(password) =>
@@ -100,11 +100,11 @@ export default class LoginPage extends React.Component {
                     />
                     {this.state.hidePassword ? (
                         <TouchableOpacity onPress={() => this.hidePassword(false)}>
-                            <Image source={require('./Images/visible.png')} style={styles.ImageStyle} />
+                            <Image source={require('../Images/visible.png')} style={styles.ImageStyle} />
                         </TouchableOpacity>) :
 
                         (<TouchableOpacity onPress={() => this.hidePassword(true)}>
-                            <Image source={require('./Images/hide.png')} style={styles.ImageStyle} />
+                            <Image source={require('../Images/hide.png')} style={styles.ImageStyle} />
                         </TouchableOpacity>)}
                 </View>
 
