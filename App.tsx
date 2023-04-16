@@ -11,7 +11,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="login" component={LoginPage} options={{ headerShown: false, title: 'Login' }} />
-        <Stack.Screen name="home" component={HomePage} options={{ title: 'Home' }} />
+        <Stack.Screen name="home" component={HomePage} options={{ headerShown: false, title: 'Home' }} />
         {/* <Stack.Screen name="Detail" component={DetialScreen} options={{ title: 'Second Screen' }}
           initialParams={{ itemId: 42 }} /> */}
       </Stack.Navigator>

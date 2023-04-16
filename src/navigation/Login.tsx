@@ -3,12 +3,12 @@ import {
     SafeAreaView, View, Text, StatusBar, StyleSheet, TextInput, TouchableOpacity,
     Image, Keyboard, TouchableWithoutFeedback
 } from 'react-native';
+import { RFValue } from "react-native-responsive-fontsize";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import globalStyle from '../../global/global-style';
 import CheckBox from '@react-native-community/checkbox'
 import { Colors } from '../../global/colors';
-import { RFValue } from "react-native-responsive-fontsize";
-import { Sizes } from '../../global/size'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Sizes } from '../../global/size';
 
 const passwordInputRef = createRef();
 
@@ -22,11 +22,13 @@ export default class LoginPage extends React.Component {
     }
 
     componentDidMount() {
-        AsyncStorage.getItem('remember').then((value) => value == 'r' ? this.setState({ remember: true }) : this.setState({ remember: false }))
-        if (this.state.remember) {
-            AsyncStorage.getItem('email').then((value) => this.setState({ email: value }))
-            AsyncStorage.getItem('pass').then((value) => this.setState({ password: value }))
-        }
+        AsyncStorage.getItem('remember').then((value) => {
+            value == 'r' ? this.setState({ remember: true }) : this.setState({ remember: false })
+            if (value == 'r') {
+                AsyncStorage.getItem('email').then((value) => this.setState({ email: value }))
+                AsyncStorage.getItem('pass').then((value) => this.setState({ password: value }))
+            }
+        })
     }
 
     hidePassword(val) {
@@ -64,8 +66,8 @@ export default class LoginPage extends React.Component {
                 <StatusBar hidden={true} />
 
                 <View style={globalStyle.horizontal}>
-                    <Text style={[globalStyle.gray, styles.logo]}>ONE</Text>
-                    <Text style={[globalStyle.red, styles.logo]}>NERGY</Text>
+                    <Text style={[globalStyle.gray, globalStyle.logo]}>ONE</Text>
+                    <Text style={[globalStyle.red, globalStyle.logo]}>NERGY</Text>
                 </View>
 
                 {this.state.errortext != '' ? (
@@ -75,7 +77,7 @@ export default class LoginPage extends React.Component {
                 ) : null}
 
                 <View style={styles.SectionStyle}>
-                    <Image source={require('../Images/email.png')} style={styles.ImageStyle} />
+                    <Image source={require('../Images/email.png')} style={globalStyle.icon_style} />
                     <TextInput
                         style={[globalStyle.full_screen, styles.InputStyle]}
                         underlineColorAndroid="transparent"
@@ -97,7 +99,7 @@ export default class LoginPage extends React.Component {
                 </View>
 
                 <View style={styles.SectionStyle}>
-                    <Image source={require('../Images/password.png')} style={styles.ImageStyle} />
+                    <Image source={require('../Images/password.png')} style={globalStyle.icon_style} />
                     <TextInput
                         style={[globalStyle.full_screen, styles.InputStyle]}
                         onChangeText={(password) =>
@@ -115,11 +117,11 @@ export default class LoginPage extends React.Component {
                     />
                     {this.state.hidePassword ? (
                         <TouchableOpacity onPress={() => this.hidePassword(false)}>
-                            <Image source={require('../Images/visible.png')} style={styles.ImageStyle} />
+                            <Image source={require('../Images/visible.png')} style={globalStyle.icon_style} />
                         </TouchableOpacity>) :
 
                         (<TouchableOpacity onPress={() => this.hidePassword(true)}>
-                            <Image source={require('../Images/hide.png')} style={styles.ImageStyle} />
+                            <Image source={require('../Images/hide.png')} style={globalStyle.icon_style} />
                         </TouchableOpacity>)}
                 </View>
 
@@ -159,10 +161,6 @@ export default class LoginPage extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    logo: {
-        fontSize: RFValue(Sizes.logo_font_size, 580),
-        marginBottom: RFValue(Sizes.logo_bottom, 580)
-    },
     SectionStyle: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -175,14 +173,6 @@ const styles = StyleSheet.create({
     },
     InputStyle: {
         fontSize: RFValue(Sizes.normal_font_size, 580)
-    },
-    ImageStyle: {
-        padding: Sizes.margin,
-        margin: Sizes.margin,
-        height: RFValue(Sizes.toogle_image_size, 580),
-        width: RFValue(Sizes.toogle_image_size, 580),
-        resizeMode: 'stretch',
-        alignItems: 'center'
     },
     buttonStyle: {
         borderWidth: 0,

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaView, View, Text, Image, TextInput, TouchableOpacity, StatusBar } from 'react-native';
+import { RFValue } from "react-native-responsive-fontsize";
+import globalStyle from '../../global/global-style';
+import { Colors } from '../../global/colors';
+import { Sizes } from '../../global/size';
 
 export default function HomePage({ navigation }) {
     const [username, setUsername] = useState('');
@@ -16,22 +18,22 @@ export default function HomePage({ navigation }) {
     };
 
     return (
-        <View >
-            <TextInput
-                underlineColorAndroid="transparent"
-                onChangeText={handleUsername}
-                placeholder="Email"
-                placeholderTextColor="#8b9cb5"
-                autoCapitalize="none"
-                keyboardType="email-address"
-                returnKeyType="next"
-            />
+        <SafeAreaView style={globalStyle.full_screen}>
+            <StatusBar animated={true} hidden={false} />
 
-            <TouchableOpacity
-                activeOpacity={0.5}
-                onPress={login}>
-                <Text >LOGIN</Text>
-            </TouchableOpacity>
-        </View>
+            <View style={[globalStyle.full_width, globalStyle.right]}>
+                <TouchableOpacity >
+                    <Image source={require('../Images/notification.png')} style={[globalStyle.toolbar_icon_style]} />
+                </TouchableOpacity>
+            </View>
+
+            <View style={[globalStyle.horizontal, globalStyle.center_horizontal]}>
+                <Text style={[globalStyle.gray, globalStyle.logo]}>ONE</Text>
+                <Text style={[globalStyle.red, globalStyle.logo]}>NERGY</Text>
+            </View>
+
+
+
+        </SafeAreaView>
     );
 }
