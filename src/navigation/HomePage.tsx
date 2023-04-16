@@ -3,7 +3,7 @@ import {
     SafeAreaView, View, Image, TouchableOpacity, StatusBar,
     ScrollView, StyleSheet,
 } from 'react-native';
-import { Card, Text, Button } from 'react-native-paper';
+import { Card, Text } from 'react-native-paper';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFValue } from "react-native-responsive-fontsize";
@@ -23,6 +23,10 @@ export default class HomePage extends React.Component {
         this.setState({ showPicker: false })
     };
 
+    notification() {
+        this.props.navigation.navigate('notification')
+    }
+
     render() {
         return (
             <SafeAreaView style={globalStyle.full_screen} >
@@ -36,7 +40,8 @@ export default class HomePage extends React.Component {
                             <Text style={[globalStyle.red, globalStyle.header]}>NERGY</Text>
                         </View>
                     </View>
-                    <TouchableOpacity style={[globalStyle.right]}>
+                    <TouchableOpacity style={[globalStyle.right]}
+                        onPress={() => this.notification()}>
                         <Image source={require('../Images/notification.png')} style={[globalStyle.toolbar_icon_style]} />
                     </TouchableOpacity>
                 </View>
