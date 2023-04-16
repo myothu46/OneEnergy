@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { Card, Text } from 'react-native-paper';
 import { RFValue } from "react-native-responsive-fontsize";
-import { LineChart } from 'react-native-charts-wrapper';
+import PieChart from 'react-native-pie-chart';
 import globalStyle from '../../global/global-style';
 import { Colors } from '../../global/colors';
 import { Sizes } from '../../global/size';
@@ -13,6 +13,10 @@ import { Sizes } from '../../global/size';
 export default class ChartPage extends React.Component {
 
     render() {
+        const widthAndHeight = 250
+        const series = [123, 321, 123, 789, 537]
+        const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']
+
         return (
             <SafeAreaView style={globalStyle.full_screen}>
                 <StatusBar animated={true} hidden={false} />
@@ -27,34 +31,34 @@ export default class ChartPage extends React.Component {
                     </TouchableOpacity>
                 </View>
 
-                {/* <ScrollView> */}
-                {/* <View style={[globalStyle.full_screen,]}> */}
-
-                {/* <Card style={[globalStyle.full_screen,]} >
-                    <Card.Content> */}
-                <View style={[globalStyle.full_screen]}>
-                    <LineChart style={[globalStyle.full_screen]}
-                        data={{
-                            dataSets: [{
-                                label: "demo",
-                                values: [
-                                    { x: 5, y: 90 },
-                                    { x: 10, y: 130 },
-                                    { x: 50, y: 2000, marker: "eat more" },
-                                    { x: 80, y: 9000, marker: "eat less" }
-                                ]
-                            }]
-                        }}
-                    />
-                </View>
-
-                {/* </Card.Content>
-                </Card> */}
-
-
-                {/* </View> */}
-                {/* </ScrollView> */}
-            </SafeAreaView>
+                <ScrollView style={[globalStyle.full_screen]} >
+                    <View style={globalStyle.full_center}>
+                        <Card style={[globalStyle.full_screen,]} >
+                            <Card.Content>
+                                <Text style={styles.title}>Basic</Text>
+                                <PieChart
+                                    widthAndHeight={widthAndHeight}
+                                    series={series}
+                                    sliceColor={sliceColor}
+                                />
+                            </Card.Content>
+                        </Card>
+                        <Card style={[globalStyle.full_screen, globalStyle.margin_top]} >
+                            <Card.Content>
+                                <Text style={styles.title}>Doughnut</Text>
+                                <PieChart
+                                    widthAndHeight={widthAndHeight}
+                                    series={series}
+                                    sliceColor={sliceColor}
+                                    doughnut={true}
+                                    coverRadius={0.45}
+                                    coverFill={'#FFF'}
+                                />
+                            </Card.Content>
+                        </Card>
+                    </View>
+                </ScrollView>
+            </SafeAreaView >
         );
     }
 }
@@ -62,9 +66,10 @@ export default class ChartPage extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F5FCFF'
+        alignItems: 'center'
     },
-    chart: {
-        flex: 1
+    title: {
+        fontSize: 24,
+        margin: 10
     }
 });
