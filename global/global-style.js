@@ -17,13 +17,16 @@ export default globalStyle = StyleSheet.create({
     },
     center_horizontal: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     full_width: {
         width: '100%'
     },
     right: {
         alignItems: 'flex-end'
+    },
+    padding: {
+        margin: Sizes.margin
     },
     white: {
         color: Colors.white
@@ -49,6 +52,11 @@ export default globalStyle = StyleSheet.create({
         fontSize: RFValue(Sizes.logo_font_size, 580),
         marginBottom: RFValue(Sizes.logo_bottom, 580)
     },
+    header: {
+        fontSize: RFValue(Sizes.large_font_size, 580),
+        marginTop: RFValue(Sizes.margin, 580),
+        marginBottom: RFValue(Sizes.margin, 580)
+    },
     icon_style: {
         padding: Sizes.margin,
         margin: Sizes.margin,
@@ -65,4 +73,7 @@ export default globalStyle = StyleSheet.create({
         resizeMode: 'stretch',
         alignItems: 'center'
     },
+    button_font_size: {
+        fontSize: Sizes.normal_font_size
+    }
 })

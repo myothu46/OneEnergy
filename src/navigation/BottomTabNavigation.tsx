@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import globalStyle from '../../global/global-style';
 import { Colors } from '../../global/colors';
 import HomePage from './HomePage';
-import PlugInPage from './PlugIn';
+import AppliancesPage from './Appliances';
 import ChartPage from './Chart';
 import SettingPage from './Setting';
 import { Sizes } from '../../global/size';
@@ -33,10 +33,10 @@ function TabsPage() {
 
             <Tab.Screen
                 name="PlugIn"
-                component={PlugInPage}
+                component={AppliancesPage}
                 options={{
                     headerShown: false,
-                    title: 'Plug In',
+                    title: 'Appliances',
                     tabBarIcon: ({ size, focused, color }) => {
                         return (
                             <MaterialCommunityIcons name="power-plug" color={color} size={Sizes.logo_font_size} />
@@ -50,7 +50,7 @@ function TabsPage() {
                 component={ChartPage}
                 options={{
                     headerShown: false,
-                    title: 'chart',
+                    title: 'Charts',
                     tabBarIcon: ({ size, focused, color }) => {
                         return (
                             <MaterialCommunityIcons name="chart-bar" color={color} size={Sizes.logo_font_size} />

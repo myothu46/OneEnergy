@@ -11,15 +11,14 @@ export default function SettingPage({ navigation }) {
         <SafeAreaView style={globalStyle.full_screen}>
             <StatusBar animated={true} hidden={false} />
 
-            <View style={[globalStyle.full_width, globalStyle.right]}>
-                <TouchableOpacity >
+            <View style={[globalStyle.horizontal]}>
+                <View style={[globalStyle.right, globalStyle.toolbar_icon_style]}></View>
+                <View style={[globalStyle.full_center]}>
+                    <Text style={[globalStyle.gray, globalStyle.header]}>Settings</Text>
+                </View>
+                <TouchableOpacity style={[globalStyle.right]}>
                     <Image source={require('../Images/notification.png')} style={[globalStyle.toolbar_icon_style]} />
                 </TouchableOpacity>
-            </View>
-
-            <View style={[globalStyle.horizontal, globalStyle.center_horizontal]}>
-                <Text style={[globalStyle.gray, globalStyle.logo]}>ONE</Text>
-                <Text style={[globalStyle.red, globalStyle.logo]}>NERGY</Text>
             </View>
 
             <Text>Setting Page</Text>

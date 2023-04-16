@@ -150,7 +150,6 @@ export default class LoginPage extends React.Component {
                     <Text style={[globalStyle.white, globalStyle.button_font_size]}>LOGIN</Text>
                 </TouchableOpacity>
 
-
                 <TouchableWithoutFeedback onPress={() => this.forgotPassword()}>
                     <Text style={styles.smallFontTextStyle}>Forgot Password?</Text>
                 </TouchableWithoutFeedback>
