@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     SafeAreaView, View, Image, TouchableOpacity, StatusBar, StyleSheet,
     ScrollView
@@ -15,7 +15,7 @@ export default class ChartPage extends React.Component {
     render() {
         const widthAndHeight = 250
         const series = [123, 321, 123, 789, 537]
-        const sliceColor = ['#F44336', '#2196F3', '#FFEB3B', '#4CAF50', '#FF9800']
+        const sliceColor = [Colors.red, Colors.gray, Colors.green, Colors.black, Colors.orange]
 
         return (
             <SafeAreaView style={globalStyle.full_screen}>
@@ -64,12 +64,8 @@ export default class ChartPage extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center'
-    },
     title: {
-        fontSize: 24,
-        margin: 10
+        fontSize: RFValue(Sizes.large_font_size, 580),
+        margin: Sizes.margin,
     }
 });

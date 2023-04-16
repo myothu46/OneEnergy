@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import { SafeAreaView, StatusBar, ScrollView, View, StyleSheet } from 'react-native';
 import { Card, Text } from 'react-native-paper';
 import globalStyle from '../../global/global-style';

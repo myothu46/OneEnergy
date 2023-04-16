@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, View, Text, Image, ScrollView, StatusBar, TouchableOpacity, StyleSheet } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

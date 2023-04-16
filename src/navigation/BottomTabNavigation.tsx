@@ -1,7 +1,5 @@
-import { Image } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import globalStyle from '../../global/global-style';
 import { Colors } from '../../global/colors';
 import HomePage from './HomePage';
 import AppliancesPage from './Appliances';
@@ -32,7 +30,7 @@ function TabsPage() {
             />
 
             <Tab.Screen
-                name="PlugIn"
+                name="Appliances"
                 component={AppliancesPage}
                 options={{
                     headerShown: false,
