@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginPage from './src/navigation/Login';
 import HomePage from './src/navigation/HomePage';
+import TabsPage from './src/navigation/BottomTabNavigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,9 +12,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="login" component={LoginPage} options={{ headerShown: false, title: 'Login' }} />
-        <Stack.Screen name="home" component={HomePage} options={{ headerShown: false, title: 'Home' }} />
-        {/* <Stack.Screen name="Detail" component={DetialScreen} options={{ title: 'Second Screen' }}
-          initialParams={{ itemId: 42 }} /> */}
+        <Stack.Screen name="home" component={TabsPage} options={{ headerShown: false, title: 'Tabs' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
