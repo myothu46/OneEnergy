@@ -47,7 +47,7 @@ export default class AppliancesPage extends React.Component {
 
                 <ScrollView>
                     <View>
-                        <Card style={[globalStyle.padding]} onPress={() => this.setState({ showPicker: true })}>
+                        <Card style={[globalStyle.margin]} onPress={() => this.setState({ showPicker: true })}>
                             <Card.Content>
                                 <View style={[globalStyle.horizontal]}>
                                     <MaterialCommunityIcons name="calendar-month" size={Sizes.logo_font_size} />

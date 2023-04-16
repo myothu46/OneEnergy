@@ -25,8 +25,14 @@ export default globalStyle = StyleSheet.create({
     right: {
         alignItems: 'flex-end'
     },
-    padding: {
+    margin: {
         margin: Sizes.margin
+    },
+    margin_top: {
+        marginTop: Sizes.margin
+    },
+    padding: {
+        padding: Sizes.margin
     },
     white: {
         color: Colors.white

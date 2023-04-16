@@ -3,7 +3,7 @@ import {
     SafeAreaView, View, Image, TouchableOpacity, StatusBar,
     ScrollView, StyleSheet,
 } from 'react-native';
-import { Card, Text } from 'react-native-paper';
+import { Card, Text, Button } from 'react-native-paper';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFValue } from "react-native-responsive-fontsize";
@@ -50,7 +50,7 @@ export default class HomePage extends React.Component {
 
                 <ScrollView>
                     <View>
-                        <Card style={[globalStyle.padding]} onPress={() => this.setState({ showPicker: true })}>
+                        <Card style={[globalStyle.margin]} onPress={() => this.setState({ showPicker: true })}>
                             <Card.Content>
                                 <View style={[globalStyle.horizontal]}>
                                     <MaterialCommunityIcons name="calendar-month" size={Sizes.logo_font_size} />
@@ -66,7 +66,7 @@ export default class HomePage extends React.Component {
                             </Card.Content>
                         </Card>
 
-                        <Card style={[globalStyle.padding]}>
+                        <Card style={[globalStyle.margin]}>
                             <Card.Content>
                                 <View style={[globalStyle.horizontal]}>
                                     <View style={styles.appliance_style}>
@@ -102,17 +102,26 @@ export default class HomePage extends React.Component {
                             </Card.Content>
                         </Card>
 
-                        <Card style={[globalStyle.padding]}>
+                        <Card style={[globalStyle.margin]}>
                             <Card.Content>
                                 <Text style={[styles.card_title]}>Your consumption data</Text>
-                                <View style={[globalStyle.full_screen, globalStyle.horizontal]}>
-                                    <Text>Hello</Text>
-                                    <Text>Hello</Text>
+                                <View style={[globalStyle.full_screen, globalStyle.horizontal, globalStyle.margin_top]}>
+                                    <View style={[styles.consumption]}>
+                                        <TouchableOpacity style={[globalStyle.full_screen, globalStyle.horizontal]}>
+                                            <View style={[globalStyle.horizontal, globalStyle.background_red, , styles.button_style]}>
+                                                <MaterialCommunityIcons name="lightning-bolt" size={Sizes.logo_font_size} />
+                                                <Text style={[globalStyle.white, styles.card_description]}> 8.35 kWh</Text>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </View>
+                                    <View style={[globalStyle.full_center, globalStyle.right, styles.consumption]}>
+                                        <Text style={[globalStyle.gray, styles.card_description]}>$ 2.61 SGD </Text>
+                                    </View>
                                 </View>
                             </Card.Content>
                         </Card>
 
-                        <Card style={[globalStyle.padding]}>
+                        <Card style={[globalStyle.margin]}>
                             <Card.Content>
                                 <Text style={[styles.card_title]}>Comparsion to the similar Condominium household in NEA study</Text>
                                 <View style={[globalStyle.full_screen, globalStyle.horizontal]}>
@@ -176,6 +185,18 @@ const styles = StyleSheet.create({
     label_text_style: {
         fontSize: Sizes.small_font_size,
         marginLeft: RFValue(Sizes.margin, 580)
+    },
+    consumption: {
+        flex: 1
+    },
+    button_style: {
+        borderWidth: 0,
+        alignItems: 'center',
+        height: RFValue(Sizes.button_height, 580),
+        borderRadius: Sizes.input_border_radius,
+        padding: Sizes.margin,
+        justifyContent: 'center',
+        alignSelf: 'stretch'
     },
 
 })
