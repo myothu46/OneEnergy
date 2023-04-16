@@ -1,12 +1,14 @@
-import React, { useState, createRef } from 'react';
+import React, { createRef } from 'react';
 import {
     SafeAreaView, View, Text, StatusBar, StyleSheet, TextInput, TouchableOpacity,
     Image, Keyboard, TouchableWithoutFeedback
 } from 'react-native';
-import globalStyle from '../global-style';
+import globalStyle from '../../global/global-style';
 import CheckBox from '@react-native-community/checkbox'
-import { Colors } from '../colors';
+import { Colors } from '../../global/colors';
 import { RFValue } from "react-native-responsive-fontsize";
+import { Sizes } from '../../global/size'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const passwordInputRef = createRef();
 
@@ -17,6 +19,14 @@ export default class LoginPage extends React.Component {
         errortext: '',
         remember: false,
         hidePassword: true
+    }
+
+    componentDidMount() {
+        AsyncStorage.getItem('remember').then((value) => value == 'r' ? this.setState({ remember: true }) : this.setState({ remember: false }))
+        if (this.state.remember) {
+            AsyncStorage.getItem('email').then((value) => this.setState({ email: value }))
+            AsyncStorage.getItem('pass').then((value) => this.setState({ password: value }))
+        }
     }
 
     hidePassword(val) {
@@ -36,11 +46,16 @@ export default class LoginPage extends React.Component {
         } else {
             this.setState({ errortext: '' });
         }
+
+        AsyncStorage.setItem('email', email);
+        AsyncStorage.setItem('pass', pass);
+        AsyncStorage.setItem('remember', this.state.remember ? 'r' : 'u');
+
         this.props.navigation.navigate('home')
     }
 
     forgotPassword() {
-        alert('Forgot Password')
+        AsyncStorage.getItem('pass').then((value) => alert('Your Password is "' + value + '"'));
     }
 
     render() {
@@ -62,7 +77,7 @@ export default class LoginPage extends React.Component {
                 <View style={styles.SectionStyle}>
                     <Image source={require('../Images/email.png')} style={styles.ImageStyle} />
                     <TextInput
-                        style={globalStyle.full_screen}
+                        style={[globalStyle.full_screen, styles.InputStyle]}
                         underlineColorAndroid="transparent"
                         onChangeText={(email) =>
                             this.setState({ email })
@@ -84,7 +99,7 @@ export default class LoginPage extends React.Component {
                 <View style={styles.SectionStyle}>
                     <Image source={require('../Images/password.png')} style={styles.ImageStyle} />
                     <TextInput
-                        style={globalStyle.full_screen}
+                        style={[globalStyle.full_screen, styles.InputStyle]}
                         onChangeText={(password) =>
                             this.setState({ password })
                         }
@@ -143,11 +158,10 @@ export default class LoginPage extends React.Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     logo: {
-        fontSize: RFValue(30, 580),
-        marginBottom: RFValue(30, 580)
+        fontSize: RFValue(Sizes.logo_font_size, 580),
+        marginBottom: RFValue(Sizes.logo_bottom, 580)
     },
     SectionStyle: {
         flexDirection: 'row',
@@ -155,46 +169,49 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: .5,
         borderColor: Colors.gray,
-        height: RFValue(30, 580),
-        borderRadius: 5,
-        margin: 10
+        height: RFValue(Sizes.input_size, 580),
+        borderRadius: Sizes.input_border_radius,
+        margin: Sizes.margin
+    },
+    InputStyle: {
+        fontSize: RFValue(Sizes.normal_font_size, 580)
     },
     ImageStyle: {
-        padding: 10,
-        margin: 5,
-        height: 25,
-        width: 25,
+        padding: Sizes.margin,
+        margin: Sizes.margin,
+        height: RFValue(Sizes.toogle_image_size, 580),
+        width: RFValue(Sizes.toogle_image_size, 580),
         resizeMode: 'stretch',
         alignItems: 'center'
     },
     buttonStyle: {
         borderWidth: 0,
         alignItems: 'center',
-        height: 40,
-        borderRadius: 5,
-        marginLeft: 40,
-        marginRight: 40,
-        marginTop: 10,
-        marginBottom: 20,
+        height: RFValue(Sizes.button_height, 580),
+        borderRadius: Sizes.bottom_radius,
+        marginLeft: Sizes.button_height,
+        marginRight: Sizes.button_height,
+        marginTop: Sizes.margin,
+        marginBottom: Sizes.margin,
         justifyContent: 'center',
         alignSelf: 'stretch'
     },
     errorTextStyle: {
         textAlign: 'center',
-        fontSize: RFValue(14, 580),
+        fontSize: RFValue(Sizes.small_font_size, 580),
     },
     rememberStyle: {
         alignItems: 'center',
-        marginTop: 10,
-        marginBottom: 10
+        marginTop: Sizes.margin,
+        marginBottom: Sizes.margin
     },
     rememberCheckBoxStyle: {
-        width: RFValue(14, 580),
-        height: RFValue(14, 580)
+        width: RFValue(Sizes.small_font_size, 580),
+        height: RFValue(Sizes.small_font_size, 580)
     },
     smallFontTextStyle: {
         color: Colors.red,
-        fontSize: RFValue(14, 580),
-        marginLeft: 10
+        fontSize: RFValue(Sizes.small_font_size, 580),
+        marginLeft: Sizes.margin
     }
 })
